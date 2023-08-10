@@ -12,13 +12,25 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.urlencoded({extended: true}));  */
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index2.html')
+  res.sendFile(__dirname + '/index.html')
 })
+
+let properties = [];
+if (fs.existsSync("properties.json")) {
+    let propertiesData = fs.readFileSync("properties.json", "utf-8");
+    properties = JSON.parse(propertiesData);
+  }
+
+let workspaces = [];
+if (fs.existsSync("workspaces.json")) {
+    let workspacesData = fs.readFileSync("workspaces.json", "utf-8");
+    workspaces = JSON.parse(workspacesData);
+  }
  
 let users = [];
 if (fs.existsSync("users.json")) {
-  let data = fs.readFileSync("users.json", "utf-8");
-  users = JSON.parse(data);
+  let usersData = fs.readFileSync("users.json", "utf-8");
+  users = JSON.parse(usersData);
 }
 
 app.get('/users', (req, res) => {
@@ -36,10 +48,6 @@ app.post('/', (req, res) => {
     let id = req.body.id;
     let address = req.body.address;
     let status = req.body.status;
-    console.log("Full Name: " + fullName);
-    console.log("ID: " + id);
-    console.log("Address: " + address);
-    console.log("Status: " + status);
     if (status == 'student') {
         res.send("<h4>You are registered! <br> As a student you will have to pay $10 at the entrance! :)</h4>");
     } else if (status == 'staff') {
@@ -53,6 +61,8 @@ app.post('/', (req, res) => {
     fs.writeFileSync("users.json", JSON.stringify(users));
     const data = req.body;
 })
+
+
  
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!')
