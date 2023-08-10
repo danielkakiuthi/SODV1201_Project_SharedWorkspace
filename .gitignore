@@ -132,3 +132,8 @@ dist
 
 # custom local Data files
 data/*
+
+
+
+# keep gitkeep files to commit empty folders
+!.gitkeep
