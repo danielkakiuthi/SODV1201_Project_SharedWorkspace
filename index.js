@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.urlencoded({extended: true}));  */
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  res.sendFile(__dirname + '/public/index.html')
 })
 
 let properties = [];
@@ -48,7 +48,7 @@ app.post('/', (req, res) => {
     let password = req.body.password;
     let verifiedUser = passwordCheck(userName, password);
     if(verifiedUser == undefined){
-        res.sendFile(__dirname + '/index.html')
+        res.sendFile(__dirname + '/public/index.html')
     }
 
 
