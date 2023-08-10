@@ -52,7 +52,12 @@ app.post('/', (req, res) => {
     if(verifiedUser == undefined){
         res.sendFile(__dirname + '/public/index.html')
     } else {
-      res.sendFile(__dirname + '/public/homePage.html')
+      if(verifiedUser.status == "owner"){
+        res.sendFile(__dirname + '/public/homePageOwner.html')
+      } else if (verifiedUser.status == "coworker"){
+        res.sendFile(__dirname + '/public/homePageCoworker.html')
+      }
+      
     }
 
 

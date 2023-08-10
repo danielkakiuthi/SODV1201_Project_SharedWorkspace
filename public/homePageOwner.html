@@ -6,7 +6,7 @@
     <title>Shared Workspace WebApp</title>
 </head>
 <body>
-    <h2>Registration</h2>
+    <h2>Home Page Owner</h2>
     
     <form action="/userRegistration" method="post">
         <label for="userName">Username:</label>
@@ -14,12 +14,23 @@
         <br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-        <select name="status" id="status" required>
-            <option value="">Select a Value</option>
-            <option value="owner">Owner</option>
-            <option value="coworker">Coworker</option>
-        </select>
         <input type="submit" value="Register">
       </form>
+      <script>
+        function fillFee(){
+            const status = document.getElementById("status")
+            const fee = document.getElementById("fee")
+
+            if (status.value == "student") {
+                fee.value = "$10"
+            } else if (status.value == "staff") {
+                fee.value = "$50"
+            } else if (status.value == "volunteer") {
+                fee.value = "$0"
+            } else {
+                fee.value = ""
+            }
+        }
+      </script>
 </body>
 </html>
