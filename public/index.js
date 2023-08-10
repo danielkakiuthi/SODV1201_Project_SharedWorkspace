@@ -44,22 +44,33 @@ app.get('/users', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    let fullName = req.body.fullName;
-    let id = req.body.id;
-    let address = req.body.address;
-    let status = req.body.status;
-    if (status == 'student') {
-        res.send("<h4>You are registered! <br> As a student you will have to pay $10 at the entrance! :)</h4>");
-    } else if (status == 'staff') {
-        res.send("<h4>You are registered! <br> As a staff member you will have to pay $50 at the entrance! :)</h4>");
-    } else if (status == 'volunteer') {
-        res.send("<h4>You are registered! <br> As a volunteer you won't have to pay! :)</h4>");
+    let userName = req.body.userName;
+    let password = req.body.password;
+    let verifiedUser = passwordCheck(userName, password);
+    if(verifiedUser == undefined){
+        res.sendFile(__dirname + '/index.html')
     }
 
-    users.push(req.body);
 
     fs.writeFileSync("users.json", JSON.stringify(users));
     const data = req.body;
+})
+
+function passwordCheck(userName, password){
+    for(i = 0; i < users.length; i++){
+        if(userName == users[i].userName && password == users[i].password){
+            return users[i]
+        } 
+    } 
+    return undefined;
+}
+
+app.post('/userRegistration', (req, res) => {
+
+
+    users.push(req.body)
+
+    fs.writeFileSync("users.json", JSON.stringify(users));
 })
 
 

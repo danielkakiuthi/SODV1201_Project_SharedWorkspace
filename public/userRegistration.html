@@ -8,30 +8,12 @@
 <body>
     <h2>BVC Sports Club</h2>
     
-    <form action="/" method="post">
-        <label for="fullName">Full name:</label>
-        <input type="text" id="fullName" name="fullName" required>
+    <form action="/userRegistration" method="post">
+        <label for="userName">Username:</label>
+        <input type="text" id="userName" name="userName" required>
         <br>
-        <label for="id">ID code:</label>
-        <input type="text" id="id" name="id" required>
-        <br>
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required>
-        <br>
-        <br>
-        <label for="status">Status:</label>
-        <select name="status" id="status" required onchange="fillFee()">
-            <option value="">Select a Value</option>
-            <option value="student">Student</option>
-            <option value="staff">Staff</option>
-            <option value="volunteer">Volunteer</option>
-        </select>
-        <br>
-        <br>
-        <label for="fee">Registration Fee:</label>
-        <input type="text" id="fee" name="fee" required readonly>
-        <br>
-        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
         <input type="submit" value="Register">
       </form>
       <script>
