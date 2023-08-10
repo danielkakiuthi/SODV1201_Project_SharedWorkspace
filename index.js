@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const fs = require("fs")  // file system 
  
 const app = express()
+
+app.use(express.static('public'))
  
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -12,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.urlencoded({extended: true}));  */
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html')
+  res.sendFile(__dirname + '/index.html')
 })
 
 let properties = [];
@@ -49,11 +51,12 @@ app.post('/', (req, res) => {
     let verifiedUser = passwordCheck(userName, password);
     if(verifiedUser == undefined){
         res.sendFile(__dirname + '/public/index.html')
+    } else {
+      res.sendFile(__dirname + '/public/homePage.html')
     }
 
 
     fs.writeFileSync("users.json", JSON.stringify(users));
-    const data = req.body;
 })
 
 function passwordCheck(userName, password){
