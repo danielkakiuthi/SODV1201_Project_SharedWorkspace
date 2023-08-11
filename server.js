@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 ------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 portNumber = 3000;
+let verifiedUser;
 
 app.listen(portNumber, () => {
   console.log(`Example app listening on port ${portNumber}!`)
@@ -73,7 +74,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   let userName = req.body.userName;
   let password = req.body.password;
-  let verifiedUser = passwordCheck(userName, password);
+  verifiedUser = passwordCheck(userName, password);
 
   if(verifiedUser == undefined){
     res.sendFile(__dirname + '/public/index.html')
@@ -114,4 +115,20 @@ app.post('/userRegistration', (req, res) => {
   users.push(req.body)
   fs.writeFileSync("./data/users.json", JSON.stringify(users));
   res.sendFile(__dirname + '/public/index.html')
+})
+
+app.post('/propertyRegistration', (req, res) => {
+  let currentProperty = req.body
+  currentProperty.owner = verifiedUser
+  properties.push(currentProperty)
+  fs.writeFileSync("./data/properties.json", JSON.stringify(properties));
+  res.sendFile(__dirname + '/public/homePageOwner.html')
+})
+
+app.post('/workspaceRegistration', (req, res) => {
+  let currentWorkspace = req.body
+  currentWorkspace.owner = verifiedUser
+  workspaces.push(currentWorkspace)
+  fs.writeFileSync("./data/workspaces.json", JSON.stringify(workspaces));
+  res.sendFile(__dirname + '/public/homePageOwner.html')
 })

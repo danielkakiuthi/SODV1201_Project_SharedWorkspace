@@ -8,31 +8,12 @@
 <body>
     <h1>Homepage Owner</h1>
     
-    <form action="/userRegistration" method="post">
-        <label for="userName">Username:</label>
-        <input type="text" id="userName" name="userName" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit" value="Register">
-      </form>
-
+    <ul>
+        <li><a href="./propertyRegistration.html">Register Property</a></li>
+        <li><a href="./myProperties.html">My Properties</a></li>
+        <li><a href="./workspaceRegistration.html">Register Workspace</a></li>
+        <li><a href="./myWorkspaces.html">My Workspaces</a></li>
+    </ul>
       
-      <script>
-        function fillFee(){
-            const status = document.getElementById("status")
-            const fee = document.getElementById("fee")
-
-            if (status.value == "student") {
-                fee.value = "$10"
-            } else if (status.value == "staff") {
-                fee.value = "$50"
-            } else if (status.value == "volunteer") {
-                fee.value = "$0"
-            } else {
-                fee.value = ""
-            }
-        }
-      </script>
 </body>
 </html>
