@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2</title>
+</head>
+<body>
+    <h1></h1>
+    <p>Click button to get your current coordinates and weather information<br>
+        <strong>Please allow Browser to access Location</strong><br>
+        It may take a few seconds to display the information on screen</p>
+
+    <button onclick="getLocation()">Get Location</button>
+
+    <p id="outputLocation"></p>
+    <p id="outputWeather"></p>
+
+    <script>
+        const apiKey = 'eed43732139335b9dc8167cae5df0926';
+        let myOutputLocation = document.getElementById("outputLocation");
+        let myOutputWeather = document.getElementById("outputWeather");
+
+
+        /**
+        * Converts an input temperature in Kelvin into an output temperature in degrees Celsius.
+        */
+        function convertKelvinToCelsius(kelvin) {
+            let celsius = parseFloat(kelvin) -273.15;
+
+            return celsius.toFixed(2);
+        }
+
+
+        /**
+         * Function that makes an API call to get Weather information based on position coordinates.
+         */
+        async function getWeather(position) {
+            const lat = position.coords.latitude.toFixed(2);
+            const lon = position.coords.longitude.toFixed(2);
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            
+            myOutputLocation.innerHTML = `Latitude: ${lat}<br>Longitude: ${lon}`;
+            
+            myOutputWeather.innerHTML = `
+            Country: ${data.sys.country}<br>
+            Location: ${data.name}<br>
+            <br>
+            Temperature (°C): ${convertKelvinToCelsius(data.main.temp)}<br>
+            Feels Like (°C): ${convertKelvinToCelsius(data.main.feels_like)}<br>
+            Temperature Min (°C): ${convertKelvinToCelsius(data.main.temp_min)}<br>
+            Temperature Max (°C): ${convertKelvinToCelsius(data.main.temp_max)}<br>
+            <br>
+            Weather: ${data.weather[0].main}<br>
+            Description: ${data.weather[0].description}
+            `
+
+            console.log(data);
+        }
+
+
+        /**
+         * Function that gets the current position of the device and use this information to get weather information.  
+         */
+        function getLocation() {
+            try {
+                navigator.geolocation.getCurrentPosition(getWeather);
+            }
+            catch {
+                myOutputLocation.innerHTML = err;
+            }
+        }
+
+    </script>
+</body>
+</html>

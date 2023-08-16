@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Workspace WebApp</title>
+</head>
+
+<body>
+    <h1>Edit Workspace Page</h1>
+    
+    <form action="/editWorkspace" method="post">
+        <table>
+            <tr>
+                <td><label for="indexWorkspace">Workspace Index:</label></td>
+                <td><input type="text" id="indexWorkspace" name="indexWorkspace" required readonly></td>
+            </tr>
+            <tr>
+            <tr>
+                <td><label for="indexProperty">Property Index:</label></td>
+                <td><input type="text" id="indexProperty" name="indexProperty" required readonly></td>
+            </tr>
+            <tr>
+                <td><label for="type">Type:</label></td>
+                <td><select name="type" id="type" required>
+                    <option value="">Select a Value...</option>
+                    <option value="meetingRoom">Meeting Room</option>
+                    <option value="privateOfficeRoom">Private Office Room</option>
+                    <option value="deskOpenArea">Desk Open Work Area</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="numberOccupants">Number of Occupants:</label></td>
+                <td><input type="number" id="numberOccupants" name="numberOccupants" min="1" required></td>
+            </tr>
+            <tr>
+                <td><label for="allowedSmoking">Smoking Allowed:</label></td>
+                <td><select name="allowedSmoking" id="allowedSmoking" required>
+                    <option value="">Select a Value...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="availabilityDate">Availability Date:</label></td>
+                <td><input type="date" id="availabilityDate" name="availabilityDate" required></td>
+            </tr>
+            <tr>
+                <td><label for="leaseTerm">Lease Term:</label></td>
+                <td><select name="leaseTerm" id="leaseTerm" required>
+                    <option value="">Select a Value...</option>
+                    <option value="day">Day</option>
+                    <option value="week">Week</option>
+                    <option value="month">Month</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="price">Price:</label></td>
+                <td><input type="number" id="price" name="price" min="0" required></td>
+            </tr>
+            <tr>
+                <td><label for="isRented">Is Rented:</label></td>
+                <td><input type="text" id="isRented" name="isRented" required readonly></td>
+            </tr>
+            <tr>
+                <td><br></td>
+                <td><br></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Register Workspace"></td>
+            </tr>
+        </table>   
+    </form>
+
+
+    <script>
+        const myIndexWorkspace = document.getElementById('indexWorkspace');
+        const myIndexProperty = document.getElementById('indexProperty');
+        const myType = document.getElementById('type');
+        const myNumberOccupants = document.getElementById('numberOccupants');
+        const myAllowedSmoking = document.getElementById('allowedSmoking');
+        const myAvailabilityDate = document.getElementById('availabilityDate');
+        const myLeaseTerm = document.getElementById('leaseTerm');
+        const myPrice = document.getElementById('price');
+        const myIsRented = document.getElementById('isRented');
+
+        const url = new URL(window.location.href)
+
+        const relatedIndexWorkspace = url.searchParams.get('indexWorkspace');
+        const relatedIndexProperty = url.searchParams.get('indexProperty');
+        const relatedType = url.searchParams.get('type');
+        const relatedNumberOccupants = url.searchParams.get('numberOccupants');
+        const relatedAllowedSmoking = url.searchParams.get('allowedSmoking');
+        const relatedAvailabilityDate = url.searchParams.get('availabilityDate');
+        const relatedLeaseTerm = url.searchParams.get('leaseTerm');
+        const relatedPrice = url.searchParams.get('price');
+        const relatedIsRented = url.searchParams.get('isRented');
+
+
+        myIndexWorkspace.value = relatedIndexWorkspace;
+        myIndexProperty.value = relatedIndexProperty;
+        myType.value = relatedType;
+        myNumberOccupants.value = relatedNumberOccupants;
+        myAllowedSmoking.value = relatedAllowedSmoking;
+        myAvailabilityDate.value = relatedAvailabilityDate;
+        myLeaseTerm.value = relatedLeaseTerm;
+        myPrice.value = relatedPrice;
+        myIsRented.value = relatedIsRented;
+
+    </script>
+</body>
+</html>
+

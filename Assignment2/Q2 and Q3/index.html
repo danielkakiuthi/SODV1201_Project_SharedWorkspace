@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 - Q2 and Q3</title>
+</head>
+<body>
+
+    <h1>BVC Sport Club Event Registration page</h1>
+    <p>In order to register for the event, please provide the following information:</p>
+    <form action="/register" method="post">
+        <table>
+            <tr>
+                <td>Student ID:</td>
+                <td><input type="text" name="id" placeholder="Enter ID" required></td>
+            </tr>
+            <tr>
+                <td>Full Name:</td>
+                <td><input type="text" name="fullname" placeholder="Enter Full Name" required></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" name="address" placeholder="Enter Address" required></td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select id="status" name="status" onchange="functionUpdateRegistrationFee()" required>
+                        <option value="">Select one...</option>
+                        <option value="student">student</option>
+                        <option value="staff">staff</option>
+                        <option value="volunteer">volunteer</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Registration Fee ($):</td>
+                <td><input type="text" name="registrationFee" id="registrationFee" required readonly></td>
+            </tr>
+
+            <tr></tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="register"></td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function functionUpdateRegistrationFee() {
+            let myStatus = document.getElementById("status");
+            let myRegistrationFee = document.getElementById("registrationFee");
+
+            if (myStatus.value=="student") {
+                myRegistrationFee.value = "10";
+            }
+            else if (myStatus.value=="staff") {
+                myRegistrationFee.value = "50";
+            }
+            else if (myStatus.value=="volunteer") {
+                myRegistrationFee.value = "0";
+            }
+            else {
+                myRegistrationFee.value = "";
+            }
+        }
+    </script>
+</body>
+</html>

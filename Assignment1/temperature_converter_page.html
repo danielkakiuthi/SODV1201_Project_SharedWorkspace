@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <title>SODV1201 - Assignment 1 - Temperature Converter Page</title>
+    </head>
+    <body>
+        <header>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="./index.html">Profile Page</a></li>
+                    <li><a href="./mark_to_grade_converter_page.html">Mark To Grade Converter Page</a></li>
+                    <li><a href="./staff_information_page.html">Staff Information Page</a></li>
+                    <li><a href="./temperature_converter_page.html">Temperature Converter Page</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <header id="header-page">
+                <section>
+                    <div>
+                        <h1>Temperature Converter Page</h1>
+                        <img src="./images/Icon_TemperatureConverter.png" alt="Temperature Converter Icon" class="page-image">
+                        
+
+                    </div>
+                </section>
+            </header>
+            
+            <article>
+                <section>
+                    <h4><strong>Input</strong></h4>
+
+                    <div>
+                        <label for="fahrenheit-input-box">Please provide a temperature in degrees Fahrenheit (°F):</label>
+                        <input type="text" id="fahrenheit-input-box" name="fahrenheit-input-box" required placeholder="Enter a number greater than -459.67" oninvalid="alert('You must fill out the form!')">
+                        <button id="button-temperature-input">Submit</button>
+                    </div>
+                    
+                </section>
+
+                <section>
+                    <h4><strong>Output</strong></h4>
+                    <div>
+                        <p>Converted Temperature to degrees Celsius (°C): <span id="celsius-output-box"></span></p>
+                    </div>
+                    <div>
+                        <p>Converted Temperature to Kelvin (K): <span id="kelvin-output-box"></span></p>
+                    </div>
+                    
+                </section>
+                
+            </article>
+
+        </main>
+
+        <footer>
+            <div id="footer-div-icons">
+                <a href="https://www.linkedin.com/in/daniel-kakiuthi/" target="_blank"><img src="./images/Logo_Linkedin.png" title="Linkedin" alt="Linkedin Logo" class="icon-logo"></a>
+                <a href="https://github.com/danielkakiuthi" target="_blank"><img src="./images/Logo_Github.png" title="Github" alt="Github Logo" class="icon-logo"></a>
+                <a href="https://www.instagram.com/danielkakiuthi" target="_blank"><img src="./images/Logo_Instagram.png" title="Instagram" alt="Instagram Logo" class="icon-logo"></a>
+                <a href="https://www.facebook.com/daniel.kakiuthi" target="_blank"><img src="./images/Logo_Facebook.png" title="Facebook" alt="Facebook Logo" class="icon-logo"></a>
+                <p>
+                    Created by Daniel Kakiuthi. &copy; 2023<br>
+                    <br>
+                    <span id="current-date"></span>
+                </p>
+            </div>
+        </footer>
+
+        <script src="./SODV1201_A1_Daniel_Kakiuthi.js" currentHtml="temperature_converter_page.html"></script>
+    </body>
+</html>

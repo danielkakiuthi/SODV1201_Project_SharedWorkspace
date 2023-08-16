@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>My Workspaces List</h1>
+    <p id="listWorkspaces"></p>
+
+
+    <form action="/homepageOwnerPage.html" method="get">
+        <input type="submit" value="Back">
+    </form>
+
+    <form action="/logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
+
+    <script>
+        async function apiListWorkspaces() {
+            const apiUrl = `http://localhost:3000/myWorkspaces`
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            
+            const myListWorkspaces = document.getElementById("listWorkspaces")
+            myListWorkspaces.innerHTML = data.tableWorkspaces
+            console.log(data.tableWorkspaces)
+        } 
+
+        apiListWorkspaces()
+    </script>
+</body>
+</html>

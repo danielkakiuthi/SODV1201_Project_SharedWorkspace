@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Workspace WebApp</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>All Users List</h1>
+    <p id="listUsers"></p>
+
+    <script>
+        async function apiListAllUsers(port) {
+            const apiUrl = `http://localhost:${port}/allUsers`
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            
+            const myListUsers = document.getElementById("listUsers")
+            myListUsers.innerHTML = data.tableUsers
+            console.log(data.tableUsers)
+        } 
+
+        apiListAllUsers(3000)
+    </script>
+</body>
+</html>

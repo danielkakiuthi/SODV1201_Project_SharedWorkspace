@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Workspace WebApp</title>
+</head>
+
+<body>
+    <h1>Edit Property Page</h1>
+    
+    <form action="/editProperty" method="post">
+        <table>
+            <tr>
+                <td><label for="indexProperty">Index Property:</label></td>
+                <td><input type="text" id="indexProperty" name="indexProperty" required readonly></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address:</label></td>
+                <td><input type="text" id="address" name="address" required></td>
+            </tr>
+            <tr>
+                <td><label for="neighborhood">Neighborhood:</label></td>
+                <td><input type="text" id="neighborhood" name="neighborhood" required></td>
+            </tr>
+            <tr>
+                <td><label for="squareFeet">Square Feet:</label></td>
+                <td><input type="text" id="squareFeet" name="squareFeet" required></td>
+            </tr>
+            <tr>
+                <td><label for="hasParkingGarage">Has Parking Garage:</label></td>
+                <td><select name="hasParkingGarage" id="hasParkingGarage" required>
+                    <option value="">Select a Value...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="isReachableByPublicTransportation">Is Reachable By Public Transportation:</label></td>
+                <td><select name="isReachableByPublicTransportation" id="isReachableByPublicTransportation" required>
+                    <option value="">Select a Value...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><br></td>
+                <td><br></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Register Property"></td>
+            </tr>
+        </table>
+      </form>
+
+
+    <script>
+        const myIndexProperty = document.getElementById('indexProperty');
+        const myAddress = document.getElementById('address');
+        const myNeighborhood = document.getElementById('neighborhood');
+        const mySquareFeet = document.getElementById('squareFeet');
+        const myHasParkingGarage = document.getElementById('hasParkingGarage');
+        const myIsReachableByPublicTransportation = document.getElementById('isReachableByPublicTransportation');
+
+        const url = new URL(window.location.href)
+
+        const relatedIndexProperty = url.searchParams.get('indexProperty');
+        const relatedAddress = url.searchParams.get('address');
+        const relatedNeighborhood = url.searchParams.get('neighborhood');
+        const relatedSquareFeet = url.searchParams.get('squareFeet');
+        const relatedHasParkingGarage = url.searchParams.get('hasParkingGarage');
+        const relatedIsReachableByPublicTransportation = url.searchParams.get('isReachableByPublicTransportation');
+
+        myIndexProperty.value = relatedIndexProperty;
+        myAddress.value = relatedAddress;
+        myNeighborhood.value = relatedNeighborhood;
+        mySquareFeet.value = relatedSquareFeet;
+        myHasParkingGarage.value = relatedHasParkingGarage;
+        myIsReachableByPublicTransportation.value = relatedIsReachableByPublicTransportation;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Workspace WebApp</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>My Properties List</h1>
+    <p id="listProperties"></p>
+
+    <form action="/homepageOwnerPage.html" method="get">
+        <input type="submit" value="Back">
+    </form>
+
+    <form action="/logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
+
+    <script>
+        async function apiListProperties(port) {
+            const apiUrl = `http://localhost:${port}/myProperties`
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            
+            const myListProperties = document.getElementById("listProperties")
+            myListProperties.innerHTML = data.tableProperties
+            console.log(data.tableProperties)
+        } 
+
+        apiListProperties(3000)
+    </script>
+</body>
+</html>
