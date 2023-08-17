@@ -63,12 +63,16 @@
                 <td><input type="text" id="isRented" name="isRented" required readonly></td>
             </tr>
             <tr>
+                <td><label for="indexRenter">Index Renter:</label></td>
+                <td><input type="text" id="indexRenter" name="indexRenter" required readonly></td>
+            </tr>
+            <tr>
                 <td><br></td>
                 <td><br></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Register Workspace"></td>
+                <td><input type="submit" value="Save Workspace"></td>
             </tr>
         </table>   
     </form>
@@ -84,6 +88,7 @@
         const myLeaseTerm = document.getElementById('leaseTerm');
         const myPrice = document.getElementById('price');
         const myIsRented = document.getElementById('isRented');
+        const myIndexRenter = document.getElementById('indexRenter');
 
         const url = new URL(window.location.href)
 
@@ -96,6 +101,7 @@
         const relatedLeaseTerm = url.searchParams.get('leaseTerm');
         const relatedPrice = url.searchParams.get('price');
         const relatedIsRented = url.searchParams.get('isRented');
+        const relatedIndexRenter = url.searchParams.get('indexRenter');
 
 
         myIndexWorkspace.value = relatedIndexWorkspace;
@@ -107,6 +113,7 @@
         myLeaseTerm.value = relatedLeaseTerm;
         myPrice.value = relatedPrice;
         myIsRented.value = relatedIsRented;
+        myIndexRenter.value = relatedIndexRenter;
 
     </script>
 </body>
