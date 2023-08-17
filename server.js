@@ -478,10 +478,6 @@ app.get(`/availableWorkspaces`, (req, res) => {
       responseObj += `<input type='hidden' name='indexRenter' value='${verifiedUser.indexUser}'>`;
       responseObj += `<button type='submit' form='rentWorkspace_${workspaces[i].indexWorkspace}' value='rentWorkspace'>Rent</button>`;
       responseObj += `</form></td>`;
-      responseObj += `<td><form action='/deleteWorkspace' method='post' id='deleteWorkspace_${workspaces[i].indexWorkspace}'>`;
-      responseObj += `<input type='hidden' name='indexWorkspace' value='${workspaces[i].indexWorkspace}'>`;
-      responseObj += `<button type='submit' form='deleteWorkspace_${workspaces[i].indexWorkspace}' value='deleteWorkspace'>Delete</button>`;
-      responseObj += `</form></td>`;
       responseObj += `</tr>`;
     }
   }
