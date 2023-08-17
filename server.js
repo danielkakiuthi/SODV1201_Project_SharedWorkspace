@@ -281,14 +281,14 @@ app.post(`/releaseWorkspace`, (req, res) => {
   let indexWorkspaceToRelease = req.body.indexWorkspace;
 
   for(let i=workspaces.length-1; i>=0; i--) {
-    if(workspaces[i].indexWorkspace==indexWorkspaceToRent) {
+    if(workspaces[i].indexWorkspace==indexWorkspaceToRelease) {
       workspaces[i].isRented = false;
       workspaces[i].indexRenter = "";
     }
   }
 
   saveLocalFileOverwrite(workspaces, `workspaces.json`);
-  res.sendFile(`${__dirname}/public/availableWorkspacesPage.html`);
+  res.sendFile(`${__dirname}/public/rentedWorkspacesPage.html`);
 })
 
 
@@ -336,55 +336,55 @@ app.get(`/allUsers`, (req, res) => {
 app.get(`/myProperties`, (req, res) => {
 
   let responseObj = `{"tableProperties": "`;
-  if(properties.length>0) {
-    responseObj += `<table id='table-my-properties'>`;
-    responseObj += `<th><button onclick='sortTableByNumber(0)'>indexProperty</button></th>`;
-    responseObj += `<th><button onclick='sortTableByText(1)'>address</button></th>`;
-    responseObj += `<th><button onclick='sortTableByText(2)'>neighborhood</button></th>`;
-    responseObj += `<th><button onclick='sortTableByNumber(3)'>squareFeet</button></th>`;
-    responseObj += `<th><button onclick='sortTableByText(4)'>hasParkingGarage</button></th>`;
-    responseObj += `<th><button onclick='sortTableByText(5)'>isReachableByPublicTransportation</button></th>`;
-    responseObj += `<th><button onclick='sortTableByNumber(6)'>Count Workspaces</button></th>`;
-    for(var i = 0; i<properties.length; i++){
-      if(verifiedUser.indexUser==properties[i].indexUser){
 
-        var counter = 0;
-        for(var j=0; j<workspaces.length; j++) {
-          if(properties[i].indexProperty==workspaces[j].indexProperty) {
-            counter++;
-          }
+  responseObj += `<table id='table-my-properties'>`;
+  responseObj += `<th><button onclick='sortTableByNumber(0)'>indexProperty</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(1)'>address</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(2)'>neighborhood</button></th>`;
+  responseObj += `<th><button onclick='sortTableByNumber(3)'>squareFeet</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(4)'>hasParkingGarage</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(5)'>isReachableByPublicTransportation</button></th>`;
+  responseObj += `<th><button onclick='sortTableByNumber(6)'>Count Workspaces</button></th>`;
+  for(var i = 0; i<properties.length; i++){
+    if(verifiedUser.indexUser==properties[i].indexUser){
+
+      var counter = 0;
+      for(var j=0; j<workspaces.length; j++) {
+        if(properties[i].indexProperty==workspaces[j].indexProperty) {
+          counter++;
         }
-
-        responseObj += `<tr>`;
-        responseObj += `<td>${properties[i].indexProperty}</td>`;
-        responseObj += `<td>${properties[i].address}</td>`;
-        responseObj += `<td>${properties[i].neighborhood}</td>`;
-        responseObj += `<td>${properties[i].squareFeet}</td>`;
-        responseObj += `<td>${properties[i].hasParkingGarage}</td>`;
-        responseObj += `<td>${properties[i].isReachableByPublicTransportation}</td>`;
-        responseObj += `<td>${counter}</td>`;
-        responseObj += `<td><form action='/editPropertyPage.html' method='get' id='editProperty_${properties[i].indexProperty}'>`;
-        responseObj += `<input type='hidden' name='indexProperty' value='${properties[i].indexProperty}'>`;
-        responseObj += `<input type='hidden' name='address' value='${properties[i].address}'>`;
-        responseObj += `<input type='hidden' name='neighborhood' value='${properties[i].neighborhood}'>`;
-        responseObj += `<input type='hidden' name='squareFeet' value='${properties[i].squareFeet}'>`;
-        responseObj += `<input type='hidden' name='hasParkingGarage' value='${properties[i].hasParkingGarage}'>`;
-        responseObj += `<input type='hidden' name='isReachableByPublicTransportation' value='${properties[i].isReachableByPublicTransportation}'>`
-        responseObj += `<button type='submit' form='editProperty_${properties[i].indexProperty}' value='editProperty'>Edit</button>`;
-        responseObj += `</form></td>`;
-        responseObj += `<td><form action='/deleteProperty' method='post' id='deleteProperty_${properties[i].indexProperty}'>`;
-        responseObj += `<input type='hidden' name='indexProperty' value='${properties[i].indexProperty}'>`;
-        responseObj += `<button type='submit' form='deleteProperty_${properties[i].indexProperty}' value='deleteProperty'>Delete</button>`;
-        responseObj += `</form></td>`;
-        responseObj += `<td><form action='/registrationWorkspacePage.html' method='get' id='registerNewWorkspace_${properties[i].indexProperty}'>`;
-        responseObj += `<input type='hidden' name='indexProperty' value='${properties[i].indexProperty}'>`;
-        responseObj += `<button type='submit' form='registerNewWorkspace_${properties[i].indexProperty}' value='registerNewWorkspace'>Register New Workspace</button>`;
-        responseObj += `</form></td>`;
-        responseObj += `</tr>`;
       }
+
+      responseObj += `<tr>`;
+      responseObj += `<td>${properties[i].indexProperty}</td>`;
+      responseObj += `<td>${properties[i].address}</td>`;
+      responseObj += `<td>${properties[i].neighborhood}</td>`;
+      responseObj += `<td>${properties[i].squareFeet}</td>`;
+      responseObj += `<td>${properties[i].hasParkingGarage}</td>`;
+      responseObj += `<td>${properties[i].isReachableByPublicTransportation}</td>`;
+      responseObj += `<td>${counter}</td>`;
+      responseObj += `<td><form action='/editPropertyPage.html' method='get' id='editProperty_${properties[i].indexProperty}'>`;
+      responseObj += `<input type='hidden' name='indexProperty' value='${properties[i].indexProperty}'>`;
+      responseObj += `<input type='hidden' name='address' value='${properties[i].address}'>`;
+      responseObj += `<input type='hidden' name='neighborhood' value='${properties[i].neighborhood}'>`;
+      responseObj += `<input type='hidden' name='squareFeet' value='${properties[i].squareFeet}'>`;
+      responseObj += `<input type='hidden' name='hasParkingGarage' value='${properties[i].hasParkingGarage}'>`;
+      responseObj += `<input type='hidden' name='isReachableByPublicTransportation' value='${properties[i].isReachableByPublicTransportation}'>`
+      responseObj += `<button type='submit' form='editProperty_${properties[i].indexProperty}' value='editProperty'>Edit</button>`;
+      responseObj += `</form></td>`;
+      responseObj += `<td><form action='/deleteProperty' method='post' id='deleteProperty_${properties[i].indexProperty}'>`;
+      responseObj += `<input type='hidden' name='indexProperty' value='${properties[i].indexProperty}'>`;
+      responseObj += `<button type='submit' form='deleteProperty_${properties[i].indexProperty}' value='deleteProperty'>Delete</button>`;
+      responseObj += `</form></td>`;
+      responseObj += `<td><form action='/registrationWorkspacePage.html' method='get' id='registerNewWorkspace_${properties[i].indexProperty}'>`;
+      responseObj += `<input type='hidden' name='indexProperty' value='${properties[i].indexProperty}'>`;
+      responseObj += `<button type='submit' form='registerNewWorkspace_${properties[i].indexProperty}' value='registerNewWorkspace'>Register New Workspace</button>`;
+      responseObj += `</form></td>`;
+      responseObj += `</tr>`;
     }
-    responseObj += `</table>`;
   }
+  responseObj += `</table>`;
+  
   responseObj += `"}`;
   
   console.log(responseObj);
@@ -499,6 +499,7 @@ app.get(`/myRentedWorkspaces`, (req, res) => {
   responseObj += `<th><button onclick='sortTableByText(6)'>leaseTerm</button></th>`;
   responseObj += `<th><button onclick='sortTableByNumber(7)'>price</button></th>`;
   responseObj += `<th><button onclick='sortTableByText(8)'>isRented</button></th>`;
+  responseObj += `<th><button onclick='sortTableByNumber(9)'>indexRenter</button></th>`;
   
   for(var i = 0; i<workspaces.length; i++){
     if(workspaces[i].isRented==true && workspaces[i].indexRenter==verifiedUser.indexUser){
@@ -512,6 +513,7 @@ app.get(`/myRentedWorkspaces`, (req, res) => {
       responseObj += `<td>${workspaces[i].leaseTerm}</td>`;
       responseObj += `<td>${workspaces[i].price}</td>`;
       responseObj += `<td>${workspaces[i].isRented}</td>`;
+      responseObj += `<td>${workspaces[i].indexRenter}</td>`;
       responseObj += `<td><form action='/releaseWorkspace' method='post' id='releaseWorkspace_${workspaces[i].indexWorkspace}'>`;
       responseObj += `<input type='hidden' name='indexWorkspace' value='${workspaces[i].indexWorkspace}'>`;
       responseObj += `<button type='submit' form='releaseWorkspace_${workspaces[i].indexWorkspace}' value='releaseWorkspace'>Release</button>`;
