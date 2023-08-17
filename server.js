@@ -138,19 +138,18 @@ app.post(`/logout`, (req, res) => {
 app.post(`/registrationUser`, (req, res) => {
 
   let newUser = req.body;
-
-  //Add first user to users list.
-  if(users.length==0){
-    newUser.indexUser = counterIndexUser++;
-    users.push(newUser);
-  }
+  let alreadyRegistered = false;
 
   //Check if username is already registered.
   for(let i=0; i<users.length; i++) {
-    if(users[i].username!=newUser.username) {
-      newUser.indexUser = counterIndexUser++;
-      users.push(newUser);
+    if(users[i].username==newUser.username && users[i].status==newUser.status) {
+    alreadyRegistered = true;
     }
+  }
+  
+  if( ! alreadyRegistered ) {
+    newUser.indexUser = counterIndexUser++;
+    users.push(newUser);
   }
 
   saveLocalFileOverwrite(users, `users.json`);
@@ -313,13 +312,16 @@ app.post(`/deleteWorkspace`, (req, res) => {
 app.get(`/allUsers`, (req, res) => {
   let responseObj = `{"tableUsers": "<table id='table-all-users'>`;
   responseObj += `<th><button onclick='sortTableByNumber(0)'>indexUser</button></th>`;
-  responseObj += `<th><button onclick='sortTableByText(1)'>username</button></th>`;
-  responseObj += `<th><button onclick='sortTableByText(2)'>password</button></th>`;
-  responseObj += `<th><button onclick='sortTableByText(3)'>fullname</button></th>`;
-  responseObj += `<th><button onclick='sortTableByText(4)'>phone</button></th>`;
-  responseObj += `<th><button onclick='sortTableByText(5)'>email</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(1)'>status</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(2)'>username</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(3)'>password</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(4)'>fullname</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(5)'>phone</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(6)'>email</button></th>`;
+
   for(var i = 0; i <= users.length - 1; i++){
     responseObj += `<tr><td>${users[i].indexUser}</td>`;
+    responseObj += `<td>${users[i].status}</td>`;
     responseObj += `<td>${users[i].username}</td>`;
     responseObj += `<td>${users[i].password}</td>`;
     responseObj += `<td>${users[i].fullname}</td>`;
