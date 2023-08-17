@@ -128,3 +128,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# custom local Data files
+data/*
+
+
+
+# keep gitkeep files to commit empty folders
+!.gitkeep

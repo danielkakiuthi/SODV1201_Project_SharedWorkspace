@@ -4,34 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shared Workspace WebApp</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
-<body>
-    <h2>Login</h2>
-    
-    <form action="/" method="post">
-        <label for="userName">Username:</label>
-        <input type="text" id="userName" name="userName" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit" value="Register">
-        <a id="userRegistrationButton" href="./userRegistration.html">New User?</a>
-      </form>
-      <script>
-        function fillFee(){
-            const status = document.getElementById("status")
-            const fee = document.getElementById("fee")
 
-            if (status.value == "student") {
-                fee.value = "$10"
-            } else if (status.value == "staff") {
-                fee.value = "$50"
-            } else if (status.value == "volunteer") {
-                fee.value = "$0"
-            } else {
-                fee.value = ""
-            }
-        }
-      </script>
+<body>
+    <h1>Shared Workspace WebApp</h1>
+    <h2>Landing Page</h2>
+
+        <table>
+            <tr>
+                <td>
+                    <form action='./loginOwnerPage.html' method='get' id='loginOwner'>
+                        <input type='hidden' name='loginOwner' value='loginOwner'>
+                        <button type='submit' form='loginOwner' value='loginOwner'>Login Owner</button>
+                    </form>
+                </td>
+                <td>
+                    <form action='./loginCoworkerPage.html' method='get' id='loginCoworker'>
+                        <input type='hidden' name='loginCoworker' value='loginCoworker'>
+                        <button type='submit' form='loginCoworker' value='loginCoworker'>Login Coworker</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+
 </body>
 </html>

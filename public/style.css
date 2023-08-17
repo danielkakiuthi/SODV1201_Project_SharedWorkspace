@@ -1,0 +1,16 @@
+p table {
+    border: 1px black solid;
+    border-collapse: collapse;
+}
+
+p table th {
+    border: 1px black solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+p table td {
+    border: 1px black solid;
+    border-collapse: collapse;
+    text-align: center;
+}
