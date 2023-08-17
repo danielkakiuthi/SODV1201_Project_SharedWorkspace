@@ -405,6 +405,7 @@ app.get(`/myWorkspaces`, (req, res) => {
   responseObj += `<th><button onclick='sortTableByNumber(7)'>price</button></th>`;
   responseObj += `<th><button onclick='sortTableByText(8)'>isRented</button></th>`;
   responseObj += `<th><button onclick='sortTableByNumber(9)'>indexRenter</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(10)'>Renter Name</button></th>`;
 
   for(var i = 0; i<workspaces.length; i++){
     if(workspaces[i].indexUser==verifiedUser.indexUser){
@@ -419,6 +420,7 @@ app.get(`/myWorkspaces`, (req, res) => {
       responseObj += `<td>${workspaces[i].price}</td>`;
       responseObj += `<td>${workspaces[i].isRented}</td>`;
       responseObj += `<td>${workspaces[i].indexRenter}</td>`;
+      responseObj += `<td>${users[workspaces[i].indexRenter].fullname}</td>`;
       responseObj += `<td><form action='/editWorkspacePage.html' method='get' id='editWorkspace_${workspaces[i].indexWorkspace}'>`;
       responseObj += `<input type='hidden' name='indexProperty' value='${workspaces[i].indexProperty}'>`;
       responseObj += `<input type='hidden' name='indexWorkspace' value='${workspaces[i].indexWorkspace}'>`;
@@ -457,8 +459,11 @@ app.get(`/availableWorkspaces`, (req, res) => {
   responseObj += `<th><button onclick='sortTableByText(5)'>availabilityDate</button></th>`;
   responseObj += `<th><button onclick='sortTableByText(6)'>leaseTerm</button></th>`;
   responseObj += `<th><button onclick='sortTableByNumber(7)'>price</button></th>`;
-  responseObj += `<th><button onclick='sortTableByText(8)'>isRented</button></th>`;
-  responseObj += `<th><button onclick='sortTableByNumber(9)'>indexRenter</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(8)'>Owner Name</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(9)'>Owner Phone</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(10)'>Owner Email</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(11)'>isRented</button></th>`;
+  responseObj += `<th><button onclick='sortTableByNumber(12)'>indexRenter</button></th>`;
   
   for(var i = 0; i<workspaces.length; i++){
     if(workspaces[i].isRented==false){
@@ -471,6 +476,9 @@ app.get(`/availableWorkspaces`, (req, res) => {
       responseObj += `<td>${workspaces[i].availabilityDate}</td>`;
       responseObj += `<td>${workspaces[i].leaseTerm}</td>`;
       responseObj += `<td>${workspaces[i].price}</td>`;
+      responseObj += `<td>${users[workspaces[i].indexUser].fullname}</td>`;
+      responseObj += `<td>${users[workspaces[i].indexUser].phone}</td>`;
+      responseObj += `<td>${users[workspaces[i].indexUser].email}</td>`;
       responseObj += `<td>${workspaces[i].isRented}</td>`;
       responseObj += `<td>${workspaces[i].indexRenter}</td>`;
       responseObj += `<td><form action='/rentWorkspace' method='post' id='rentWorkspace_${workspaces[i].indexWorkspace}'>`;
@@ -498,8 +506,11 @@ app.get(`/myRentedWorkspaces`, (req, res) => {
   responseObj += `<th><button onclick='sortTableByText(5)'>availabilityDate</button></th>`;
   responseObj += `<th><button onclick='sortTableByText(6)'>leaseTerm</button></th>`;
   responseObj += `<th><button onclick='sortTableByNumber(7)'>price</button></th>`;
-  responseObj += `<th><button onclick='sortTableByText(8)'>isRented</button></th>`;
-  responseObj += `<th><button onclick='sortTableByNumber(9)'>indexRenter</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(8)'>Owner Name</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(9)'>Owner Phone</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(10)'>Owner Email</button></th>`;
+  responseObj += `<th><button onclick='sortTableByText(11)'>isRented</button></th>`;
+  responseObj += `<th><button onclick='sortTableByNumber(12)'>indexRenter</button></th>`;
   
   for(var i = 0; i<workspaces.length; i++){
     if(workspaces[i].isRented==true && workspaces[i].indexRenter==verifiedUser.indexUser){
@@ -512,6 +523,9 @@ app.get(`/myRentedWorkspaces`, (req, res) => {
       responseObj += `<td>${workspaces[i].availabilityDate}</td>`;
       responseObj += `<td>${workspaces[i].leaseTerm}</td>`;
       responseObj += `<td>${workspaces[i].price}</td>`;
+      responseObj += `<td>${users[workspaces[i].indexUser].fullname}</td>`;
+      responseObj += `<td>${users[workspaces[i].indexUser].phone}</td>`;
+      responseObj += `<td>${users[workspaces[i].indexUser].email}</td>`;
       responseObj += `<td>${workspaces[i].isRented}</td>`;
       responseObj += `<td>${workspaces[i].indexRenter}</td>`;
       responseObj += `<td><form action='/releaseWorkspace' method='post' id='releaseWorkspace_${workspaces[i].indexWorkspace}'>`;
