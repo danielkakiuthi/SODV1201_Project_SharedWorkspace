@@ -412,7 +412,7 @@ app.get(`/myWorkspaces`, (req, res) => {
 
       let renterName;
       if (workspaces[i].indexRenter!="") {
-        renterName = user[workspaces[i].indexRenter].fullname;
+        renterName = users[workspaces[i].indexRenter].fullname;
       } else {
         renterName = "";
       }
