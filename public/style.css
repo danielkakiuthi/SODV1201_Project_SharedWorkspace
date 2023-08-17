@@ -1,14 +1,16 @@
-table {
+p table {
     border: 1px black solid;
     border-collapse: collapse;
 }
 
-th {
+p table th {
     border: 1px black solid;
     border-collapse: collapse;
+    text-align: center;
 }
 
-td {
+p table td {
     border: 1px black solid;
     border-collapse: collapse;
+    text-align: center;
 }
