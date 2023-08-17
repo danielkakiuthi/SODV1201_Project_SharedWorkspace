@@ -180,7 +180,7 @@ app.post(`/registrationWorkspace`, (req, res) => {
 
   newWorkspace.indexWorkspace = counterIndexWorkspace++;
   newWorkspace.indexUser = verifiedUser.indexUser;
-  newWorkspace.isRented = false;
+  newWorkspace.isRented = "no";
   newWorkspace.indexRenter = "";
 
   workspaces.push(newWorkspace);
@@ -264,7 +264,7 @@ app.post(`/rentWorkspace`, (req, res) => {
 
   for(let i=workspaces.length-1; i>=0; i--) {
     if(workspaces[i].indexWorkspace==indexWorkspaceToRent) {
-      workspaces[i].isRented = true;
+      workspaces[i].isRented = "yes";
       workspaces[i].indexRenter = verifiedUser.indexUser;
     }
   }
@@ -281,7 +281,7 @@ app.post(`/releaseWorkspace`, (req, res) => {
 
   for(let i=workspaces.length-1; i>=0; i--) {
     if(workspaces[i].indexWorkspace==indexWorkspaceToRelease) {
-      workspaces[i].isRented = false;
+      workspaces[i].isRented = "no";
       workspaces[i].indexRenter = "";
     }
   }
@@ -476,7 +476,7 @@ app.get(`/availableWorkspaces`, (req, res) => {
   responseObj += `<th><button onclick='sortTableByNumber(12)'>indexRenter</button></th>`;
   
   for(var i = 0; i<workspaces.length; i++){
-    if(workspaces[i].isRented==false){
+    if(workspaces[i].isRented=="no"){
       responseObj += `<tr>`;
       responseObj += `<td>${workspaces[i].indexProperty}</td>`;
       responseObj += `<td>${workspaces[i].indexWorkspace}</td>`;
@@ -523,7 +523,7 @@ app.get(`/myRentedWorkspaces`, (req, res) => {
   responseObj += `<th><button onclick='sortTableByNumber(12)'>indexRenter</button></th>`;
   
   for(var i = 0; i<workspaces.length; i++){
-    if(workspaces[i].isRented==true && workspaces[i].indexRenter==verifiedUser.indexUser){
+    if(workspaces[i].isRented=="yes" && workspaces[i].indexRenter==verifiedUser.indexUser){
       responseObj += `<tr>`;
       responseObj += `<td>${workspaces[i].indexProperty}</td>`;
       responseObj += `<td>${workspaces[i].indexWorkspace}</td>`;
