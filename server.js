@@ -409,6 +409,14 @@ app.get(`/myWorkspaces`, (req, res) => {
 
   for(var i = 0; i<workspaces.length; i++){
     if(workspaces[i].indexUser==verifiedUser.indexUser){
+
+      let renterName;
+      if (workspaces[i].indexRenter!="") {
+        renterName = workspaces[i].indexRenter.fullname;
+      } else {
+        renterName = "";
+      }
+
       responseObj += `<tr>`;
       responseObj += `<td>${workspaces[i].indexProperty}</td>`;
       responseObj += `<td>${workspaces[i].indexWorkspace}</td>`;
@@ -420,7 +428,7 @@ app.get(`/myWorkspaces`, (req, res) => {
       responseObj += `<td>${workspaces[i].price}</td>`;
       responseObj += `<td>${workspaces[i].isRented}</td>`;
       responseObj += `<td>${workspaces[i].indexRenter}</td>`;
-      responseObj += `<td>${users[workspaces[i].indexRenter].fullname}</td>`;
+      responseObj += `<td>${renterName}</td>`;
       responseObj += `<td><form action='/editWorkspacePage.html' method='get' id='editWorkspace_${workspaces[i].indexWorkspace}'>`;
       responseObj += `<input type='hidden' name='indexProperty' value='${workspaces[i].indexProperty}'>`;
       responseObj += `<input type='hidden' name='indexWorkspace' value='${workspaces[i].indexWorkspace}'>`;
